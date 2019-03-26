@@ -7,9 +7,8 @@ export default class Search extends Component {
     trackTitle: ""
   };
 
-  findTrack = (dispatch,e) => {
+  findTrack = (dispatch, e) => {
     e.preventDefault();
-
 
     axios
       .get(
@@ -20,10 +19,11 @@ export default class Search extends Component {
         }`
       )
       .then(res => {
-       dispatch({
-           type: 'SEARCH_TRACKS',
-           payload: res.data.message.body.track_list
-       })
+        dispatch({
+          type: "SEARCH_TRACKS",
+          payload: res.data.message.body.track_list
+        });
+        this.setState({ trackTitle: "" });
       })
       .catch(err => console.log(err));
   };
